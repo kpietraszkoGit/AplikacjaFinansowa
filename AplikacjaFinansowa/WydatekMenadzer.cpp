@@ -22,6 +22,13 @@ Wydatek WydatekMenadzer::podajDaneWydatku(string data)
     Wydatek wydatek;
     string rodzajWydatku = "";
     string ilosc = "";
+    string dataBezZnaku = "";
+    int dateWithoutSignInt = 0;
+
+    dataBezZnaku = MetodyDaty::resetSign(data);
+    cout << "data bez znaku: " << dataBezZnaku << endl;
+    dateWithoutSignInt = MetodyPomocnicze::konwersjaStringNaInt(dataBezZnaku);
+    cout << "data bez znaku int: " << dateWithoutSignInt << endl;
 
     cout << "Podaj rodzaj wydatku: ";
     cin >> rodzajWydatku;
@@ -32,6 +39,7 @@ Wydatek WydatekMenadzer::podajDaneWydatku(string data)
 
     wydatek.ustawIdWydatku((plikZWydatkami.pobierzIdOstatniegoWydatku()+1));
     wydatek.ustawIdUzytkownika(ID_ZALOGOWANEGO_UZYTKOWNIKA);
+    wydatek.ustawDateInt(dateWithoutSignInt);
     wydatek.ustawDate(data);
     wydatek.ustawRodzajWydatku(rodzajWydatku);
     wydatek.ustawIlosc(ilosc);
@@ -137,8 +145,102 @@ char WydatekMenadzer::wybierzOpcjeDaty()
 void WydatekMenadzer::wyswietlWydatkiZBiezacegoMiesiaca()
 {
     //system("cls");
-    cout << "wyswietlWydatkiZBiezacegoMiesiaca" << endl;
+    //string dataBezZnaku;
+    int quantity = 0;
+    int sumExpense = 0, sumIncome = 0;
+    if (!wydatki.empty())
+    {
+        cout << "    >>> WYDATKI Z BIEZACEGO MIESIACA <<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        for (vector <Wydatek> :: iterator itr = wydatki.begin(); itr != wydatki.end(); itr++)
+        {
+            //dataBezZnaku = MetodyDaty::resetSign(itr -> pobierzDate());
+            //przychod.ustawDate(dataBezZnaku);
+            //przychody.push_back(przychod);
+
+            //if (itr -> pobierzIdUzytkownika() == imiePoszukiwanegoAdresata)
+            //{
+                dateSorting(*itr);
+                quantity = currentMonth(*itr);
+                sumExpense = sumExpense + quantity;
+            //}
+        }
+        cout << "Suma wydatkow: " << sumExpense << endl;
+        cout << endl;
+    }
+    else
+    {
+        cout << endl << "Nie ma zadnych wydatkow." << endl << endl;
+    }
+    //sumIncome = PrzychodMenadzer::wyswietlPrzychodyZBiezacegoMiesiaca();
+    sumIncome = wyswietlPrzychodyZBiezacegoMiesiaca();
+     //sumIncome = pobierz();
+    MetodyPomocnicze::difference(sumIncome, sumExpense);
     system("pause");
+}
+
+int WydatekMenadzer::pobieszSume()
+{
+   suma = przychodMenadzer.pokazSume();
+   return suma;
+}
+
+void WydatekMenadzer::wyswietlWydatek(Wydatek wydatek)
+{
+    cout << "Id wydatku:                          " << wydatek.pobierzIdWydatku() << endl;
+    cout << "Data wydatku:                        " << wydatek.pobierzDate() << endl;
+    cout << "Rodzaj wydatku:                      " << wydatek.pobierzRodzajWydatku() << endl;
+    cout << "Kwota:                               " << wydatek.pobierzIlosc() << endl;
+    cout << endl;
+}
+
+void WydatekMenadzer::dateSorting(Wydatek wydatek)
+{
+    sort(wydatki.begin(), wydatki.end(), sortByDate());
+}
+
+int WydatekMenadzer::currentMonth(Wydatek wydatek)
+{
+    int ExpenseInt = 0;
+    int year = 0, month = 0, day = 0, currentDataInt = 0, dateOfBeginInt = 0;
+    string dayStringNumber  = "", monthStringNumber = "", dayString = "", beginMonth = "", beginYear = "", dateOfBegin = "", currentData = "";
+    string beginDay = "01";
+
+    SYSTEMTIME st;
+    GetSystemTime(&st);
+
+    year = st.wYear;
+    month = st.wMonth;
+    day = st.wDay;
+
+    dayString = MetodyPomocnicze::konwerjsaIntNaString(day);
+    if (dayString.length() == 1)
+    {
+        dayStringNumber = "0"+dayString;
+    }
+    else dayStringNumber = dayString;
+
+    beginMonth = MetodyPomocnicze::konwerjsaIntNaString(month);
+    if (beginMonth.length() == 1)
+    {
+        monthStringNumber = "0"+beginMonth;
+    }
+    else monthStringNumber = beginMonth;
+
+    beginYear = MetodyPomocnicze::konwerjsaIntNaString(year);
+    dateOfBegin = beginYear+monthStringNumber+beginDay;
+
+    currentData = beginYear+monthStringNumber+dayStringNumber;
+    currentDataInt = MetodyPomocnicze::konwersjaStringNaInt(currentData);
+
+    dateOfBeginInt = MetodyPomocnicze::konwersjaStringNaInt(dateOfBegin);
+    if (wydatek.pobierzDateInt() >= dateOfBeginInt && wydatek.pobierzDateInt() <= currentDataInt)
+    {
+        wyswietlWydatek(wydatek);
+        ExpenseInt = MetodyPomocnicze::konwersjaStringNaInt(wydatek.pobierzIlosc());
+        return ExpenseInt;
+    }
+    else return 0;
 }
 /*
 void AdresatMenadzer::wyswietlWszystkichAdresatow()

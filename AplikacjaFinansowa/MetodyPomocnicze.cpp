@@ -1,5 +1,11 @@
 #include "MetodyPomocnicze.h"
 
+void difference(int sumIncome, int sumExpense)
+{
+ int roznica = sumIncome - sumExpense;
+ cout << "roznica" << roznica << endl;
+}
+
 string MetodyPomocnicze::konwerjsaIntNaString(int liczba)
 {
     ostringstream ss;

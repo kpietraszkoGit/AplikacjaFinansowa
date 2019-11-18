@@ -18,6 +18,8 @@ public:
     static char wczytajZnak();
     static int wczytajLiczbeCalkowita();
     static string zamianaPrzecinkaNaKropke(string ilosc);
+    static void difference(int sumIncome, int sumExpense);
+
 };
 
 #endif

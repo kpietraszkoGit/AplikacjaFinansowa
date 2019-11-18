@@ -19,6 +19,7 @@ bool PlikZWydatkami::dopiszWydatekDoPliku(Wydatek wydatek)
 
     xml.AddElem("ExpenseId", MetodyPomocnicze::konwerjsaIntNaString(wydatek.pobierzIdWydatku()));
     xml.AddElem("UserId", MetodyPomocnicze::konwerjsaIntNaString(wydatek.pobierzIdUzytkownika()));
+    xml.AddElem("DateInt", MetodyPomocnicze::konwerjsaIntNaString(wydatek.pobierzDateInt()));
     xml.AddElem("Date", wydatek.pobierzDate());
     xml.AddElem("Item", wydatek.pobierzRodzajWydatku());
     xml.AddElem("Amount", wydatek.pobierzIlosc());
@@ -149,6 +150,8 @@ vector <Wydatek> PlikZWydatkami::wczytajWydatekZalogowanegoUzytkownikaZPliku(int
         int expenseID = atoi( MCD_2PCSZ(xml.GetData()) );
         xml.FindElem( "UserId" );
         int userID = atoi( MCD_2PCSZ(xml.GetData()) );
+        xml.FindElem( "DateInt" );
+        int dateInt = atoi( MCD_2PCSZ(xml.GetData()) );
         xml.FindElem( "Date" );
         string date = xml.GetData();
         xml.FindElem( "Item" );
@@ -169,6 +172,7 @@ vector <Wydatek> PlikZWydatkami::wczytajWydatekZalogowanegoUzytkownikaZPliku(int
         {
             wydatek.ustawIdWydatku(expenseID);
             wydatek.ustawIdUzytkownika(userID);
+            wydatek.ustawDateInt(dateInt);
             wydatek.ustawDate(date);
             wydatek.ustawRodzajWydatku(item);
             wydatek.ustawIlosc(amount);

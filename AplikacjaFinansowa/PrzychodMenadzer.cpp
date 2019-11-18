@@ -23,7 +23,7 @@ Przychod PrzychodMenadzer::podajDanePrzychodu(string data)
     Przychod przychod;
     string rodzajPrzychodu = "";
     string ilosc = "";
-    string dataBezZnaku;
+    string dataBezZnaku = "";
     int dateWithoutSignInt = 0;
 
     dataBezZnaku = MetodyDaty::resetSign(data);
@@ -162,32 +162,46 @@ char PrzychodMenadzer::wybierzOpcjeDaty()
     return wybor;
 }
 
-void PrzychodMenadzer::wyswietlPrzychodyZBiezacegoMiesiaca()
+int PrzychodMenadzer::wyswietlPrzychodyZBiezacegoMiesiaca()
 {
+    int quantity = 0;
+    int sumIncome = 0;
     system("cls");
-    string dataBezZnaku;
+    //string dataBezZnaku;
     if (!przychody.empty())
     {
-        cout << "             >>> PRZYCHODY <<<" << endl;
+        cout << "    >>> PRZYCHODY Z BIEZACEGO MIESIACA <<<" << endl;
         cout << "-----------------------------------------------" << endl;
         for (vector <Przychod> :: iterator itr = przychody.begin(); itr != przychody.end(); itr++)
         {
+
             //dataBezZnaku = MetodyDaty::resetSign(itr -> pobierzDate());
             //przychod.ustawDate(dataBezZnaku);
             //przychody.push_back(przychod);
 
             //if (itr -> pobierzIdUzytkownika() == imiePoszukiwanegoAdresata)
             //{
-                wyswietlPrzychod(*itr);
+                dateSorting(*itr);
+                //wyswietlPrzychod(*itr); //wyswietla wszystko
+                quantity = currentMonth(*itr);
+                sumIncome = sumIncome + quantity;
             //}
         }
+        cout << "Suma przychodow: " << sumIncome << endl;
         cout << endl;
     }
     else
     {
         cout << endl << "Nie ma zadnych przychodow." << endl << endl;
     }
-    system("pause");
+    return sumIncome;
+   // system("pause");
+}
+
+int PrzychodMenadzer::pokazSume()
+{
+    int pobierzSume = wyswietlPrzychodyZBiezacegoMiesiaca();
+    return pobierzSume;
 }
 
 void PrzychodMenadzer::wyswietlPrzychod(Przychod przychod)
@@ -195,29 +209,59 @@ void PrzychodMenadzer::wyswietlPrzychod(Przychod przychod)
     cout << "Id przychodu:                        " << przychod.pobierzIdPrzychodu() << endl;
     cout << "Data przychodu:                      " << przychod.pobierzDate() << endl;
     cout << "Rodzaj przychodu:                    " << przychod.pobierzRodzajPrzychodu() << endl;
-    cout << "Ilosc:                               " << przychod.pobierzIlosc() << endl;
+    cout << "Kwota:                               " << przychod.pobierzIlosc() << endl;
+    cout << endl;
 }
 
 void PrzychodMenadzer::dateSorting(Przychod przychod)
 {
-    cout << "Id przychodu:" << przychod.pobierzDateInt() << endl;
-   /* sort( przychody.begin( ), przychody.end( ), [ ](const Przychod & przychod1,const Przychod & przychod2 )
-    {
-    return przychod1.pobierzDateInt() < przychod2.pobierzDateInt();
-    });*/
-    //sortujemy z u¿yciem funkcji 'mniejsze'
-    sort(przychody.begin(), przychody.end(), sprawdzanie);
-
+    sort(przychody.begin(), przychody.end(), sortByDate());
 }
 
-bool PrzychodMenadzer::sprawdzanie( Przychod PierwszyPrzychod, Przychod DrugiPrzychod )
+int PrzychodMenadzer::currentMonth(Przychod przychod)
 {
-    //Przychod przychod;
-    if(PierwszyPrzychod.pobierzDateInt() < DrugiPrzychod.pobierzDateInt()) return true;
-    else return false;
-    //int zmienna = przychod.pobierzDateInt();
-    //return PierwszyPrzychod.pobierzDateInt() < DrugiPrzychod.pobierzDateInt(); //zwraca wartoœæ logiczn¹, sortujemy wzglêdem zmiennej o nazwie 'zmienna'
+    int IncomeInt = 0;
+    int year = 0, month = 0, day = 0, currentDataInt = 0, dateOfBeginInt = 0;
+    string dayStringNumber  = "", monthStringNumber = "", dayString = "", beginMonth = "", beginYear = "", dateOfBegin = "", currentData = "";
+    string beginDay = "01";
+
+    SYSTEMTIME st;
+    GetSystemTime(&st);
+
+    year = st.wYear;
+    month = st.wMonth;
+    day = st.wDay;
+
+    dayString = MetodyPomocnicze::konwerjsaIntNaString(day);
+    if (dayString.length() == 1)
+    {
+        dayStringNumber = "0"+dayString;
+    }
+    else dayStringNumber = dayString;
+
+    beginMonth = MetodyPomocnicze::konwerjsaIntNaString(month);
+    if (beginMonth.length() == 1)
+    {
+        monthStringNumber = "0"+beginMonth;
+    }
+    else monthStringNumber = beginMonth;
+
+    beginYear = MetodyPomocnicze::konwerjsaIntNaString(year);
+    dateOfBegin = beginYear+monthStringNumber+beginDay;
+
+    currentData = beginYear+monthStringNumber+dayStringNumber;
+    currentDataInt = MetodyPomocnicze::konwersjaStringNaInt(currentData);
+    dateOfBeginInt = MetodyPomocnicze::konwersjaStringNaInt(dateOfBegin);
+    if (przychod.pobierzDateInt() >= dateOfBeginInt && przychod.pobierzDateInt() <= currentDataInt)
+    {
+        wyswietlPrzychod(przychod);
+        IncomeInt = MetodyPomocnicze::konwersjaStringNaInt(przychod.pobierzIlosc());
+        return IncomeInt;
+    }
+    else return 0;
 }
+
+
 /*
 void AdresatMenadzer::wyswietlWszystkichAdresatow()
 {

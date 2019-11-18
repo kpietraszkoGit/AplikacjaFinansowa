@@ -5,10 +5,10 @@
 1572774793 c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\uzytkownik.h
 	<iostream>
 
-1573229051 source:c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\metodypomocnicze.cpp
+1574023125 source:c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\metodypomocnicze.cpp
 	"MetodyPomocnicze.h"
 
-1573229051 c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\metodypomocnicze.h
+1574023162 c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\metodypomocnicze.h
 	<iostream>
 	<sstream>
 	<algorithm>
@@ -105,7 +105,7 @@
 	<string>
 	"MetodyPomocnicze.h"
 
-1573721784 c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\przychodmenadzer.h
+1574082160 c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\przychodmenadzer.h
 	<iostream>
 	<vector>
 	<windows.h>
@@ -117,10 +117,10 @@
 	"MetodyPomocnicze.h"
 	"MetodyDaty.h"
 
-1573666552 source:c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\przychodmenadzer.cpp
+1574082164 source:c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\przychodmenadzer.cpp
 	"PrzychodMenadzer.h"
 
-1573504961 c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\wydatekmenadzer.h
+1574087893 c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\wydatekmenadzer.h
 	<iostream>
 	<vector>
 	<windows.h>
@@ -129,8 +129,9 @@
 	"PlikZWydatkami.h"
 	"MetodyPomocnicze.h"
 	"MetodyDaty.h"
+	"PrzychodMenadzer.h"
 
-1573229051 c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\wydatek.h
+1573741594 c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\wydatek.h
 	<iostream>
 
 1573386769 c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\plikzwydatkami.h
@@ -143,12 +144,12 @@
 	"PlikXml.h"
 	"Markup.h"
 
-1573229051 source:c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\wydatek.cpp
+1573741613 source:c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\wydatek.cpp
 	"Wydatek.h"
 
-1573572940 source:c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\plikzwydatkami.cpp
+1573741601 source:c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\plikzwydatkami.cpp
 	"PlikZWydatkami.h"
 
-1573505207 source:c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\wydatekmenadzer.cpp
+1574032040 source:c:\users\dell\desktop\przysz造 programista\programy\programy obiektowe\aplikacja finansowa\aplikacjafinansowa\wydatekmenadzer.cpp
 	"WydatekMenadzer.h"
 

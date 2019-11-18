@@ -10,6 +10,11 @@ void Wydatek::ustawIdUzytkownika(int noweIdUzytkownika)
     if (noweIdUzytkownika >= 0)
     idUzytkownika = noweIdUzytkownika;
 }
+void Wydatek::ustawDateInt(int nowaDataInt)
+{
+    if (nowaDataInt >= 0)
+    dataInt = nowaDataInt;
+}
 void Wydatek::ustawDate(string nowaData)
 {
     data = nowaData;
@@ -32,6 +37,10 @@ int Wydatek::pobierzIdWydatku()
 int Wydatek::pobierzIdUzytkownika()
 {
     return idUzytkownika;
+}
+int Wydatek::pobierzDateInt()
+{
+    return dataInt;
 }
 string Wydatek::pobierzDate()
 {

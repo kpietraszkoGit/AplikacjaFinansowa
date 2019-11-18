@@ -32,6 +32,34 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="AplikacjaFinansowa.cpp" />
+		<Unit filename="AplikacjaFinansowa.h" />
+		<Unit filename="Markup.cpp" />
+		<Unit filename="Markup.h" />
+		<Unit filename="MetodyDaty.cpp" />
+		<Unit filename="MetodyDaty.h" />
+		<Unit filename="MetodyPomocnicze.cpp" />
+		<Unit filename="MetodyPomocnicze.h" />
+		<Unit filename="PlikXml.cpp" />
+		<Unit filename="PlikXml.h" />
+		<Unit filename="PlikZPrzychodami.cpp" />
+		<Unit filename="PlikZPrzychodami.h" />
+		<Unit filename="PlikZUzytkownikami.cpp" />
+		<Unit filename="PlikZUzytkownikami.h" />
+		<Unit filename="PlikZWydatkami.cpp" />
+		<Unit filename="PlikZWydatkami.h" />
+		<Unit filename="Przychod.cpp" />
+		<Unit filename="Przychod.h" />
+		<Unit filename="PrzychodMenadzer.cpp" />
+		<Unit filename="PrzychodMenadzer.h" />
+		<Unit filename="Uzytkownik.cpp" />
+		<Unit filename="Uzytkownik.h" />
+		<Unit filename="UzytkownikMenadzer.cpp" />
+		<Unit filename="UzytkownikMenadzer.h" />
+		<Unit filename="Wydatek.cpp" />
+		<Unit filename="Wydatek.h" />
+		<Unit filename="WydatekMenadzer.cpp" />
+		<Unit filename="WydatekMenadzer.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
