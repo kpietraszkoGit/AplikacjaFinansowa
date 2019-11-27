@@ -1,85 +1,67 @@
 #include <iostream>
-#include "AplikacjaFinansowa.h"
+#include "FinanceApplication.h"
 
 using namespace std;
-//10:52 - zapisac to i przetestowaæ
-/*int main()
-{//tutaj jest ok
-    KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt", "Adresaci.txt");
-    ksiazkaAdresowa.logowanieUzytkownika();
-    ksiazkaAdresowa.dodajAdresata();
-    ksiazkaAdresowa.wyswietlWszystkichAdresatow();
 
-    //ksiazkaAdresowa.dodajAdresata();
-    //ksiazkaAdresowa.wyswietlWszystkichAdresatow();
-
-}*/
 int main()
 {
-    vector <Uzytkownik> uzytkownicy;
-    vector <Przychod> przychody;
-    vector <Wydatek> wydatki;
-    //vector <Adresat> adresaci;
+    //vector <Uzytkownik> uzytkownicy;
+    //vector <Przychod> przychody;
+    //vector <Wydatek> wydatki;
+    vector<Income> incomes;
+    vector<Expense> expenses;
 
-    //AplikacjaFinansowa aplikacjaFinansowa("users.xml", "incomes.xml", "expenses.xml");//incomes-dochody
-    AplikacjaFinansowa aplikacjaFinansowa("users.xml", "incomes.xml", "expenses.xml");
-    char wybor;
+    FinanceApplication financeApplication("users.xml", "incomes.xml", "expenses.xml");
+    //AplikacjaFinansowa aplikacjaFinansowa("users.xml", "incomes.xml", "expenses.xml");
+    //char wybor;
+    char choice;
 
     while (true)
     {
-        if (aplikacjaFinansowa.czyUzytkownikJestZalogowany())
+        //if (aplikacjaFinansowa.czyUzytkownikJestZalogowany())
+        if (financeApplication.isUserLoggedIn())
         {
-            wybor = aplikacjaFinansowa.wybierzOpcjeZMenuUzytkownika();
+            choice = financeApplication.selectOptionsFromUserMenu();
 
-            switch (wybor)
+            switch (choice)
             {
             case '1':
-                //idOstatniegoAdresata = dodajAdresata(adresaci, idZalogowanegoUzytkownika, idOstatniegoAdresata);
-                //ksiazkaAdresowa.dodajAdresata();
-                aplikacjaFinansowa.dodajPrzychod();
+                financeApplication.addIncome();
                 break;
             case '2':
-                //ksiazkaAdresowa.wyszukajAdresatowPoImieniu();
-               // wyszukajAdresatowPoImieniu(adresaci);
-                aplikacjaFinansowa.dodajWydatek();
+                financeApplication.addExpense();
                 break;
             case '3':
-                aplikacjaFinansowa.balanceOfMonth();
-                //ksiazkaAdresowa.wyszukajAdresatowPoNazwisku();
+                financeApplication.balanceFromThisMonth();
                 break;
             case '4':
-                //ksiazkaAdresowa.wyswietlWszystkichAdresatow();
+                financeApplication.balanceFromLastMonth();
                 break;
             case '5':
-                //ksiazkaAdresowa.usunAdresata();
-                //ksiazkaAdresowa.podajIdOstatniegoAdresataPoUsunieciu();
-                //idUsunietegoAdresata = usunAdresata(adresaci);
-                //idOstatniegoAdresata = podajIdOstatniegoAdresataPoUsunieciuWybranegoAdresata(idUsunietegoAdresata, idOstatniegoAdresata);
+                financeApplication.balanceFromOtherPeriodOfTime();
                 break;//6:58,
             case '6':
-                aplikacjaFinansowa.zmianaHaslaZalogowanegoUzytkownika();
+                financeApplication.changeOfPasswordOfLoggedInUser();
                 //ksiazkaAdresowa.edytujAdresata();
                 break;
             case '7':
-                aplikacjaFinansowa.wylogowanieUzytkownika();
-                //idZalogowanegoUzytkownika = 0;
-                //adresaci.clear();
-                przychody.clear();//vektor
-                wydatki.clear();
+                financeApplication.logOutUser();
+                incomes.clear();//przychody
+                expenses.clear();
                 break;
             }
         }
         else
         {
-            wybor = aplikacjaFinansowa.wybierzOpcjeZMenuGlownego();
+            choice = financeApplication.selectOptionsFromMainMenu();
 
-            switch (wybor)
+            switch (choice)
             {
             case '1':
-                aplikacjaFinansowa.rejestracjaUzytkownika();
+                financeApplication.userRegistration();
                 break;
             case '2':
-                aplikacjaFinansowa.logowanieUzytkownika();
+                financeApplication.userLogin();
                 break;
             case '9':
                 exit(0);

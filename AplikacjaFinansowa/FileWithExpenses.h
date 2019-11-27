@@ -1,23 +1,23 @@
-#ifndef PLIKZPRZYCHODAMI_H
-#define PLIKZPRZYCHODAMI_H
+#ifndef FILEWITHEXPENSES_H
+#define FILEWITHEXPENSES_H
 
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include <cstdlib>
 
-#include "Przychod.h"
-#include "MetodyPomocnicze.h"
-#include "PlikXml.h"
+#include "Expense.h"
+#include "HelpingMethods.h"
+#include "FileXml.h"
 #include "Markup.h"
 
 using namespace std;
 
-class PlikZPrzychodami: public PlikXml
+class FileWithExpenses: public FileXml
 {
     //const string NAZWA_PLIKU_Z_ADRESATAMI;//stala globalna
     //string NAZWA_PLIKU_Z_ADRESATAMI_TYMCZASOWYMI;
-    int idOstatniegoPrzychodu;
+    int idLastExpense;
     //int idUsuwanegoAdresata;
     //fstream plikTekstowy;
 
@@ -32,19 +32,14 @@ class PlikZPrzychodami: public PlikXml
 
 public://18:07
     //PlikZAdresatami(string nazwaPlikuZAdresatami): NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami)
-    PlikZPrzychodami(string nazwaPliku) : PlikXml(nazwaPliku)
+    FileWithExpenses(string fileName) : FileXml(fileName)
     {
-        //NAZWA_PLIKU_Z_ADRESATAMI_TYMCZASOWYMI = "AdresaciTymczasowi.txt";
-        idOstatniegoPrzychodu = 0;
-        //idUsuwanegoAdresata = 0;
-    };//konstruktor z lista inicjalizujaca {}-cialo konstruktora
-    bool dopiszPrzychodDoPliku(Przychod przychod);
-    vector <Przychod> wczytajPrzychodyZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
-    int pobierzIdOstatniegoPrzychodu();
-    //int usunWybranegoAdresataZPliku(int idUsuwanegoAdresata);
-    //int podajIdOstatniegoAdresataPoUsunieciuWybranegoAdresata(int idUsuwanegoAdresata, int idOstatniegoAdresata);//wstawic to gdzies
-    //int pobierzZPlikuIdOstatniegoAdresata();//to trzeba uaktywic
-    //void edytujAdresataWPliku(Adresat adresat);
+        idLastExpense = 0;
+    };
+    bool addExpenseToFile(Expense expense);//dopiszPrzychodDoPliku(Przychod przychod);
+    vector <Expense> loadExpensesLoggedUserFromFile(int idLoggedUser);//vector <Przychod> wczytajPrzychodyZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
+    int getIdLastExpense();
+
 };
 
 #endif

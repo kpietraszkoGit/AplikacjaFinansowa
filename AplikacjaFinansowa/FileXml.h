@@ -1,20 +1,20 @@
-#ifndef PLIKXML_H
-#define PLIKXML_H
+#ifndef FILEXML_H
+#define FILEXML_H
 
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
-class PlikXml
+class FileXml
 {
-    const string NAZWA_PLIKU;
+    const string FILE_NAME;//nazwa pliku
 
 public:
 
-    PlikXml(string nazwaPliku) : NAZWA_PLIKU(nazwaPliku) {};
-    string pobierzNazwePliku();
-    bool czyPlikJestPusty();
+    FileXml(string fileName) : FILE_NAME(fileName) {};
+    string getFileName();//getFileName
+    //bool isFileEmpty();
 };
 
 /*class PlikZAdresatami : public PlikTekstowy

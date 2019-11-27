@@ -1,23 +1,23 @@
-#ifndef PLIKZWYDATKAMI_H
-#define PLIKZWYDATKAMI_H
+#ifndef FILEWITHINCOMES_H
+#define FILEWITHINCOMES_H
 
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include <cstdlib>
 
-#include "Wydatek.h"
-#include "MetodyPomocnicze.h"
-#include "PlikXml.h"
+#include "Income.h"
+#include "HelpingMethods.h"
+#include "FileXml.h"
 #include "Markup.h"
 
 using namespace std;
 
-class PlikZWydatkami: public PlikXml
+class FileWithIncomes: public FileXml
 {
     //const string NAZWA_PLIKU_Z_ADRESATAMI;//stala globalna
     //string NAZWA_PLIKU_Z_ADRESATAMI_TYMCZASOWYMI;
-    int idOstatniegoWydatku;
+    int idLastIncome;//idOstatniegoPrzychodu;
     //int idUsuwanegoAdresata;
     //fstream plikTekstowy;
 
@@ -32,19 +32,13 @@ class PlikZWydatkami: public PlikXml
 
 public://18:07
     //PlikZAdresatami(string nazwaPlikuZAdresatami): NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami)
-    PlikZWydatkami(string nazwaPliku) : PlikXml(nazwaPliku)
+    FileWithIncomes(string fileName) : FileXml(fileName)
     {
-        //NAZWA_PLIKU_Z_ADRESATAMI_TYMCZASOWYMI = "AdresaciTymczasowi.txt";
-        idOstatniegoWydatku = 0;
-        //idUsuwanegoAdresata = 0;
-    };//konstruktor z lista inicjalizujaca {}-cialo konstruktora
-    bool dopiszWydatekDoPliku(Wydatek wydatek);
-    vector <Wydatek> wczytajWydatekZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
-    int pobierzIdOstatniegoWydatku();
-    //int usunWybranegoAdresataZPliku(int idUsuwanegoAdresata);
-    //int podajIdOstatniegoAdresataPoUsunieciuWybranegoAdresata(int idUsuwanegoAdresata, int idOstatniegoAdresata);//wstawic to gdzies
-    //int pobierzZPlikuIdOstatniegoAdresata();//to trzeba uaktywic
-    //void edytujAdresataWPliku(Adresat adresat);
+        idLastIncome = 0;//idOstatniegoPrzychodu = 0;
+    };
+    bool addIncomeToFile(Income income);//dopiszPrzychodDoPliku(Przychod przychod);
+    vector <Income> loadIncomesLoggedUserFromFile(int idLoggedUser);//vector <Przychod> wczytajPrzychodyZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
+    int getIdLastIncome(); //lub//getIdLastIncomeFromFile//pobierzIdOstatniegoPrzychodu();
 };
 
 #endif

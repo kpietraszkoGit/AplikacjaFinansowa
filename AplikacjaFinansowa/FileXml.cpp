@@ -1,11 +1,11 @@
-#include "PlikXml.h"
+#include "FileXml.h"
 
-string PlikXml::pobierzNazwePliku()
+string FileXml::getFileName()
 {
-    return NAZWA_PLIKU;
+    return FILE_NAME;
 }
 
-bool PlikXml::czyPlikJestPusty()
+/*bool PlikXml::czyPlikJestPusty()
 {
     bool pusty = true;
     fstream plikTekstowy;
@@ -20,6 +20,6 @@ bool PlikXml::czyPlikJestPusty()
 
     plikTekstowy.close();
     return pusty;
-}
+}*/
 
 

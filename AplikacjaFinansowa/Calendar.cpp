@@ -1,6 +1,6 @@
-#include "MetodyDaty.h"
+#include "Calendar.h"
 
-string MetodyDaty::downloadSystemTime()
+string Calendar::getCurrentDate()
 {
     int year = 0, month = 0, day = 0;
     string todayDate  = "", monthStringNumber  = "", monthString  = "", dayString  = "", dayStringNumber  = "";
@@ -13,7 +13,7 @@ string MetodyDaty::downloadSystemTime()
     //cout << "Data dzisiejszego dnia to: " << st.wYear << "-" << st.wMonth << "-" << st.wDay  << endl;
     year = st.wYear;
     month = st.wMonth;
-    monthString = MetodyPomocnicze::konwerjsaIntNaString(month);
+    monthString = HelpingMethods::conversionIntToString(month);
     if (monthString.length() == 1)
     {
         monthStringNumber = "0"+monthString;
@@ -22,7 +22,7 @@ string MetodyDaty::downloadSystemTime()
     //out << "miesiac: " << monthStringNumber << endl;
 
     day = st.wDay;
-    dayString = MetodyPomocnicze::konwerjsaIntNaString(day);
+    dayString = HelpingMethods::conversionIntToString(day);
     if (dayString.length() == 1)
     {
         dayStringNumber = "0"+dayString;
@@ -30,7 +30,7 @@ string MetodyDaty::downloadSystemTime()
     else dayStringNumber = dayString;
     //cout << "dzien: " << dayStringNumber << endl;
 
-    todayDate = MetodyPomocnicze::konwerjsaIntNaString(year)+"-"+monthStringNumber+"-"+dayStringNumber;
+    todayDate = HelpingMethods::conversionIntToString(year)+"-"+monthStringNumber+"-"+dayStringNumber;
     cout << todayDate << endl;
 
     return todayDate;
@@ -39,21 +39,20 @@ string MetodyDaty::downloadSystemTime()
     //cout << leapYear << endl;
     //cout << numberDaysPerMonth(month, leapYear) << endl;
     //dateComparison(year, month, day);
-
 }
 
-/*string MetodyDaty::checkDate()
+bool Calendar::isDateGood(string differentDate)
 {
+    //jesli data jest wpisana poprawnie daje true i idzie dalej , jesli jest nie poprawnie powtarzamy tą czynnosć zeby wpisał poprawną date
+}
 
-}*/
-
-bool MetodyDaty::isLeapYear(int year)
+bool Calendar::isLeapYear(int year)
 {
     bool leapYear = (year % 4 == 0 && year% 100 != 0 || year % 400 == 0);
     return leapYear;
 }
 
-int MetodyDaty::numberDaysPerMonth(int month, bool leapYear)
+int Calendar::numberDaysPerMonth(int month, bool leapYear)
 {
     int days;
     if (month == 4 || month == 6 || month == 9 || month == 11)
@@ -71,7 +70,7 @@ int MetodyDaty::numberDaysPerMonth(int month, bool leapYear)
     return days;
 }
 
-string MetodyDaty::trueDateRange()
+string Calendar::trueDateRange()
 {
     SYSTEMTIME st;
     GetSystemTime(&st);
@@ -94,44 +93,33 @@ string MetodyDaty::trueDateRange()
 
     cout << "Podaj miesiac: ";
     cin >> giveMonth;
-    cout <<giveMonth.length() << endl;
-    giveMonthInt = MetodyPomocnicze::konwersjaStringNaInt(giveMonth);
-    cout << giveMonthInt << endl;
+    //cout <<giveMonth.length() << endl;
+    giveMonthInt = HelpingMethods::conversionStringToInt(giveMonth);
+    //cout << giveMonthInt << endl;
     while ((giveMonthInt > 12 || giveMonthInt < 1) || giveMonth.length() == 1)
     {
         cout << "Podales miesiac poza zakresem lub w zlym formacie, podaj miesiac jeszcze raz: ";
         cin >> giveMonth;
-        giveMonthInt = MetodyPomocnicze::konwersjaStringNaInt(giveMonth);
+        giveMonthInt = HelpingMethods::conversionStringToInt(giveMonth);
     }
 
     daysInMonth = numberDaysPerMonth(giveMonthInt, leapYear);
-    cout << "Dni w miesiacu: " <<  daysInMonth << endl;
+    //cout << "Dni w miesiacu: " <<  daysInMonth << endl;
     cout << "Podaj dzien: ";
     cin >> giveDay;
-    cout << giveDay.length() << endl;
-    giveDayInt = MetodyPomocnicze::konwersjaStringNaInt(giveDay);
-    cout << giveDayInt << endl;
+    //cout << giveDay.length() << endl;
+    giveDayInt = HelpingMethods::conversionStringToInt(giveDay);
+    //cout << giveDayInt << endl;
     while ((giveDayInt > daysInMonth || giveDayInt < 1) || giveDay.length() == 1)
     {
         cout << "Podales dzien poza zakresem lub w zlym formacie, podaj dzien jeszcze raz: ";
-        giveDay = MetodyPomocnicze::wczytajLinie();
+        giveDay = HelpingMethods::loadLine();
         cin >> giveDay;
     }
-    writeDate = MetodyPomocnicze::konwerjsaIntNaString(giveYear)+"-"+giveMonth+"-"+giveDay;
-    cout << writeDate << endl;
+    writeDate = HelpingMethods::conversionIntToString(giveYear)+"-"+giveMonth+"-"+giveDay;
+    //cout << writeDate << endl;
 
     return writeDate;
-}
-
-string MetodyDaty::resetSign(string signDelete)
-{
-    //string signDelete = "";
-    cout <<"data przed usunieciem: " << signDelete << endl;
-    signDelete = signDelete.erase (4,1);
-    signDelete = signDelete.erase (6,1);
-    cout << "data po usunieciu znaku: " << signDelete << endl;
-    return signDelete;
-    system("pause");
 }
 
 
