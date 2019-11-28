@@ -20,19 +20,11 @@ Income FinanceManager::getInfoAboutNewIncome()
     string differentDate, category, amountForChecking, stringDateWithoutDash, stringCurrentDateWithoutDash;
     string currentDate;
     int intCurrentDateWithoutDash, intDateWithoutDash;
-    float amount;
     char choice;
-    //income.setNumberOfRecord(fileWithIncomes.getIdLastIncomeFromFile()+1);//przychod.ustawIdPrzychodu((plikZPrzychodami.pobierzIdOstatniegoPrzychodu()+1));
-    //income.setUserId(ID_LOGGED_USER);
 
     income.setIncomeId(fileWithIncomes.getIdLastIncome()+1);
     income.setUserId(ID_LOGGED_USER);
-    /*przychod.ustawIdPrzychodu((plikZPrzychodami.pobierzIdOstatniegoPrzychodu()+1));
-    przychod.ustawIdUzytkownika(ID_ZALOGOWANEGO_UZYTKOWNIKA);
-    przychod.ustawDateInt(dateWithoutSignInt);
-    przychod.ustawDate(data);
-    przychod.ustawRodzajPrzychodu(rodzajPrzychodu);
-    przychod.ustawIlosc(ilosc);//zamiana przcinka na kropke napisac funkcje*/
+
 
     cout << "Czy chcesz dodac przychod z dzisiejsza data?" << endl;
     cout << "Jesli tak wcisnij 't'. Jesli chcesz wybrac inna date wcisnij 'n': ";
@@ -48,11 +40,7 @@ Income FinanceManager::getInfoAboutNewIncome()
     else
     {
         cout << "Podaj date w postaci rrrr-mm-dd! ";
-        /*do
-        {
-            differentDate = HelpingMethods::loadLine();
-        }
-        while (calendar.isDateGood(differentDate) == false);*/
+
         differentDate = calendar.trueDateRange();
         stringDateWithoutDash = HelpingMethods::removeDashFromDate(differentDate);
         intDateWithoutDash = HelpingMethods::conversionStringToInt(stringDateWithoutDash);
@@ -61,16 +49,41 @@ Income FinanceManager::getInfoAboutNewIncome()
         income.setDateInt(intDateWithoutDash);
     }
     cout << endl << "Wpisz kategorie, ktorej dotyczyl przychod (np. wynagrodzenie, sprzedaz): ";
-    //category = HelpingMethods::loadLine();
     cin >> category;
     income.setNameOfIncome(category);
     cout << endl << "Wpisz kwote przychodu: ";
-    //amountForChecking = HelpingMethods::loadLine();
-    cin >> amountForChecking;
+
+
+            /*float amountForCheckingFloat;
+            bool good, bad;
+            while(true)
+            {
+                cin >> amountForCheckingFloat;
+                good = cin.good();
+                bad = cin.bad();
+                cin.clear();
+                cin.sync();
+                if (( good == 0 ) ||( bad == 1 ))
+                {
+                    cout << "Wpisana liczba jest niepoprawna, wpisz jeszcze raz: ";
+                }
+                else
+                {
+                    std::ostringstream ss;
+                    ss << amountForCheckingFloat;
+                    std::string s(ss.str());
+                    cout << "Liczba float w stringu: " << s << endl;
+                    system("pause");
+                    break;
+                }
+            }*/
+
+    cin >> amountForChecking;//dobrze string
+
+
     amountForChecking = HelpingMethods::conversionCommaToDot(amountForChecking);
-    amount = HelpingMethods::conversionStringToFloat(amountForChecking);
-//    income.setQuantity(amount);//setQuantity
-    income.setQuantity(amountForChecking);
+    //amount = HelpingMethods::conversionStringToFloat(amountForChecking);
+    income.setQuantity(amountForChecking);//dobrze string
 
     return income;
 }
@@ -78,6 +91,8 @@ Income FinanceManager::getInfoAboutNewIncome()
 void FinanceManager::addExpense()
 {
     Expense expense;
+    system("cls");
+    cout << " >>> DODAWANIE NOWEGO WYDATKU <<<" << endl << endl;
     expense = getInfoAboutNewExpense();
     expenses.push_back(expense);
 
@@ -93,7 +108,6 @@ Expense FinanceManager::getInfoAboutNewExpense()
     string differentDate, category, amountForChecking, stringDateWithoutDash, stringCurrentDateWithoutDash;
     string currentDate;
     int intCurrentDateWithoutDash, intDateWithoutDash;
-    float amount;
     char choice;
 
     expense.setExpenseId(fileWithExpenes.getIdLastExpense()+1);
@@ -114,13 +128,7 @@ Expense FinanceManager::getInfoAboutNewExpense()
     else
     {
         cout << "Podaj date w postaci rrrr-mm-dd! ";
-        /*do
-        {
-            differentDate = AdditionalMethods::loadLine();
-            if (!calendar.isDateGood(differentDate))
-                cout << "Zly format daty. Podaj date jeszcze raz: ";
-        }
-        while (!calendar.isDateGood(differentDate));*/
+
         differentDate = calendar.trueDateRange();
         stringDateWithoutDash = HelpingMethods::removeDashFromDate(differentDate);
         intDateWithoutDash = HelpingMethods::conversionStringToInt(stringDateWithoutDash);
@@ -129,13 +137,12 @@ Expense FinanceManager::getInfoAboutNewExpense()
         expense.setDateInt(intDateWithoutDash);
     }
     cout << endl << "Wpisz kategorie, ktorej dotyczyl wydatek (np. czynsz, jedzenie): ";
-    //category = AdditionalMethods::loadLine();
     cin >> category;
     expense.setNameOfExpense(category);
     cout << endl << "Wpisz kwote wydatku: ";
     cin >> amountForChecking;
     amountForChecking = HelpingMethods::conversionCommaToDot(amountForChecking);
-    amount = HelpingMethods::conversionStringToFloat(amountForChecking);
+    //amount = HelpingMethods::conversionStringToFloat(amountForChecking);
     expense.setQuantity(amountForChecking);
 
     return expense;
@@ -149,11 +156,9 @@ void FinanceManager::viewBalanceFromThisMonth()
 void FinanceManager::viewBalanceFromLastMonth()
 {
     balance.viewBalanceFromLastMonth(incomes, expenses);
-    //system("pause");
 }
 
 void FinanceManager::viewBalanceFromOtherPeriodOfTime()
 {
     balance.viewBalanceFromOtherPeriodOfTime(incomes, expenses);
-    //system("pause");
 }

@@ -4,8 +4,6 @@
 void Balance::dateSortingIncome(Income income)
 {
     sort(incomes.begin(), incomes.end(), sortByDateIncome());
-    //cout << "wchodzi do sortowania?" << endl;
-    //system("pause");
 }
 
 void Balance::viewBalanceFromThisMonth(vector <Income> incomes, vector <Expense> expenses)
@@ -13,7 +11,8 @@ void Balance::viewBalanceFromThisMonth(vector <Income> incomes, vector <Expense>
     float quantityIncomes = 0;
     float sumIncome = 0;
     system("cls");
-    //string dataBezZnaku;
+    sort(incomes.begin(), incomes.end(), sortByDateIncome());
+    sort(expenses.begin(), expenses.end(), sortByDateExpense());    //string dataBezZnaku;
     if (!incomes.empty())
     {
         cout << "    >>> PRZYCHODY Z BIEZACEGO MIESIACA <<<" << endl;
@@ -22,20 +21,9 @@ void Balance::viewBalanceFromThisMonth(vector <Income> incomes, vector <Expense>
         for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++)
         {
 
-            //dataBezZnaku = MetodyDaty::resetSign(itr -> pobierzDate());
-            //przychod.ustawDate(dataBezZnaku);
-            //przychody.push_back(przychod);
-
-            //if (itr -> pobierzIdUzytkownika() == imiePoszukiwanegoAdresata)
-            //{
-                //incomes=dateSorting(*itr);
                 dateSortingIncome(*itr);
-                //viewIncomes(*itr);
-                //system("pause");
-                //wyswietlPrzychod(*itr); //wyswietla wszystko
                 quantityIncomes = currentMonthIncome(*itr);
                 sumIncome = sumIncome + quantityIncomes;
-            //}
         }
         cout << "Suma przychodow: " << sumIncome << endl;
         cout << endl;
@@ -44,7 +32,7 @@ void Balance::viewBalanceFromThisMonth(vector <Income> incomes, vector <Expense>
     {
         cout << endl << "Nie ma zadnych przychodow." << endl << endl;
     }
-    ///////////////
+
     float quantityExpenses = 0;
     float sumExpense = 0;
     if (!expenses.empty())
@@ -53,16 +41,9 @@ void Balance::viewBalanceFromThisMonth(vector <Income> incomes, vector <Expense>
         cout << "-----------------------------------------------" << endl;
         for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++)
         {
-            //dataBezZnaku = MetodyDaty::resetSign(itr -> pobierzDate());
-            //przychod.ustawDate(dataBezZnaku);
-            //przychody.push_back(przychod);
-
-            //if (itr -> pobierzIdUzytkownika() == imiePoszukiwanegoAdresata)
-            //{
                 dateSortingExpense(*itr);
                 quantityExpenses = currentMonthExpense(*itr);
                 sumExpense = sumExpense + quantityExpenses;
-            //}
         }
         cout << "Suma wydatkow: " << sumExpense << endl;
         cout << endl;
@@ -74,8 +55,6 @@ void Balance::viewBalanceFromThisMonth(vector <Income> incomes, vector <Expense>
 
     float difference = sumIncome - sumExpense;
     cout << "Roznica: " << difference << endl << endl;
-    //string numberSt = "1009098.12";
-    //cout << "liczba flat:" << HelpingMethods::conversionStringToFloat(numberSt) << endl;
     system("pause");
 }
 
@@ -139,7 +118,6 @@ float Balance::currentMonthIncome(Income income)
     if (income.getDateInt() >= dateOfBeginInt && income.getDateInt() <= currentDataInt)
     {
         viewIncomes(income);
-        //IncomeInt = HelpingMethods::conversionStringToInt(income.getQuantity());//konwersja ze string na float
         incomeFloat = HelpingMethods::conversionStringToFloat(income.getQuantity());
         return incomeFloat;
     }
@@ -184,7 +162,6 @@ float Balance::currentMonthExpense(Expense expense)
     {
         viewExpenses(expense);
         expenseFloat = HelpingMethods::conversionStringToFloat(expense.getQuantity());
-        //ExpenseInt = HelpingMethods::conversionStringToInt(expense.getQuantity());//ma byc konwersja ze string na float
         return expenseFloat;
     }
     else return 0;
@@ -195,7 +172,8 @@ void Balance::viewBalanceFromLastMonth(vector <Income> incomes, vector <Expense>
     float quantityIncomes = 0;
     float sumIncome = 0;
     system("cls");
-    //string dataBezZnaku;
+    sort(incomes.begin(), incomes.end(), sortByDateIncome());
+    sort(expenses.begin(), expenses.end(), sortByDateExpense());
     if (!incomes.empty())
     {
         cout << "    >>> PRZYCHODY Z POPRZEDNIEGO MIESIACA <<<" << endl;
@@ -203,18 +181,9 @@ void Balance::viewBalanceFromLastMonth(vector <Income> incomes, vector <Expense>
 
         for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++)
         {
-
-            //dataBezZnaku = MetodyDaty::resetSign(itr -> pobierzDate());
-            //przychod.ustawDate(dataBezZnaku);
-            //przychody.push_back(przychod);
-
-            //if (itr -> pobierzIdUzytkownika() == imiePoszukiwanegoAdresata)
-            //{
                 dateSortingIncome(*itr);
-                //wyswietlPrzychod(*itr); //wyswietla wszystko
                 quantityIncomes = lastMonthIncome(*itr);
                 sumIncome = sumIncome + quantityIncomes;
-            //}
         }
         cout << "Suma przychodow: " << sumIncome << endl;
         cout << endl;
@@ -223,7 +192,7 @@ void Balance::viewBalanceFromLastMonth(vector <Income> incomes, vector <Expense>
     {
         cout << endl << "Nie ma zadnych przychodow." << endl << endl;
     }
-    ///////////////
+
     float quantityExpenses = 0;
     float sumExpense = 0;
     if (!expenses.empty())
@@ -232,16 +201,9 @@ void Balance::viewBalanceFromLastMonth(vector <Income> incomes, vector <Expense>
         cout << "-----------------------------------------------" << endl;
         for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++)
         {
-            //dataBezZnaku = MetodyDaty::resetSign(itr -> pobierzDate());
-            //przychod.ustawDate(dataBezZnaku);
-            //przychody.push_back(przychod);
-
-            //if (itr -> pobierzIdUzytkownika() == imiePoszukiwanegoAdresata)
-            //{
                 dateSortingExpense(*itr);
                 quantityExpenses = lastMonthExpense(*itr);
                 sumExpense = sumExpense + quantityExpenses;
-            //}
         }
         cout << "Suma wydatkow: " << sumExpense << endl;
         cout << endl;
@@ -280,10 +242,9 @@ float Balance::lastMonthIncome(Income income)
         earlierMonth = month - 1;
         earlierYear = year;
     }
-    //cout << earlierMonth << "-" << earlierYear << endl;
+
     leapYear = Calendar::isLeapYear(earlierYear);
     days = Calendar::numberDaysPerMonth(earlierMonth, leapYear);
-    //cout << days << endl;
 
     beginMonth = HelpingMethods::conversionIntToString(earlierMonth);
     if (beginMonth.length() == 1)
@@ -304,7 +265,7 @@ float Balance::lastMonthIncome(Income income)
     if (income.getDateInt() >= dateOfBeginInt && income.getDateInt() <= dateOfEndInt)
     {
         viewIncomes(income);
-        incomeFloat = HelpingMethods::conversionStringToFloat(income.getQuantity());//konwersja ze string na float
+        incomeFloat = HelpingMethods::conversionStringToFloat(income.getQuantity());
         return incomeFloat;
     }
     else return 0;
@@ -334,10 +295,9 @@ float Balance::lastMonthExpense(Expense expense)
         earlierMonth = month - 1;
         earlierYear = year;
     }
-    //cout << earlierMonth << "-" << earlierYear << endl;
+
     leapYear = Calendar::isLeapYear(earlierYear);
     days = Calendar::numberDaysPerMonth(earlierMonth, leapYear);
-    //cout << days << endl;
 
     beginMonth = HelpingMethods::conversionIntToString(earlierMonth);
     if (beginMonth.length() == 1)
@@ -358,7 +318,7 @@ float Balance::lastMonthExpense(Expense expense)
     if (expense.getDateInt() >= dateOfBeginInt && expense.getDateInt() <= dateOfEndInt)
     {
         viewExpenses(expense);
-        expenseFloat = HelpingMethods::conversionStringToFloat(expense.getQuantity());//ma byc konwersja ze string na float
+        expenseFloat = HelpingMethods::conversionStringToFloat(expense.getQuantity());
         return expenseFloat;
     }
     else return 0;
@@ -373,7 +333,6 @@ void Balance::viewBalanceFromOtherPeriodOfTime(vector <Income> incomes, vector <
     string dataFirst = "", dataSecond = "", dataWithoutSign = "";
 
     cout << "Podaj date (w formacie rrrr-mm-dd) od kiedy ma byc pokazany przychod i wydatek: " << endl;
-    //dataFromInt = MetodyDaty::writeDate();
     dataFirst = calendar.trueDateRange();
     dataWithoutSign = HelpingMethods::removeDashFromDate(dataFirst);
     dataFromInt = HelpingMethods::conversionStringToInt(dataWithoutSign);
@@ -384,6 +343,8 @@ void Balance::viewBalanceFromOtherPeriodOfTime(vector <Income> incomes, vector <
     dataToInt = HelpingMethods::conversionStringToInt(dataWithoutSign);
 
     system("cls");
+    sort(incomes.begin(), incomes.end(), sortByDateIncome());
+    sort(expenses.begin(), expenses.end(), sortByDateExpense());
     if (!incomes.empty())
     {
         cout << "   >>> PRZYCHODY Z WYBRANEGO OKRESU <<<" << endl;

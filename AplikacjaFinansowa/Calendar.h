@@ -7,9 +7,7 @@
 #include <algorithm>
 #include <windows.h>//pobieranie czasu
 #include <winbase.h>//pobieranie czasu
-//#include "Finance.h"
-//#include "Incomes.h"
-//#include "Expenses.h"
+
 #include "HelpingMethods.h"
 
 
@@ -20,8 +18,7 @@ class Calendar
 
 public:
     string getCurrentDate();
-    bool isDateGood(string differentDate);
-    //static string downloadSystemTime();
+    //bool isDateGood(string differentDate);
     static bool isLeapYear(int year);
     static int numberDaysPerMonth(int month, bool leapYear);
     string trueDateRange();

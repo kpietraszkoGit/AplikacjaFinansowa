@@ -1,24 +1,22 @@
 #include "UserManager.h"
 
-//4:00 - zmienic to
-
 void UserManager::userRegistration()
 {
-    User user = giveDataNewUser();//podajDaneNowegoUzytkownika();
+    User user = giveDataNewUser();
 
-    users.push_back(user); //uzytkownicy.push_back(uzytkownik);
-    fileWithUsers.addUserToFile(user);  //plikZUzytkownikami.dopiszUzytkownikaDoPliku(uzytkownik);
+    users.push_back(user);
+    fileWithUsers.addUserToFile(user);
 
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
     Sleep(2000);
     return;
 }
 
-User UserManager::giveDataNewUser() //Uzytkownik UzytkownikMenadzer::podajDaneNowegoUzytkownika()//nie musimy miec tutaj vektora uzytkownicy bo jest on juz u nas w klasie
+User UserManager::giveDataNewUser()
 {
-    User user;//Uzytkownik uzytkownik;
+    User user;
 
-    user.setId(getIdNewUser()); //uzytkownik.ustawId(pobierzIdNowegoUzytkownika());
+    user.setId(getIdNewUser());
 
     string login, name, surname;
     do
@@ -31,19 +29,19 @@ User UserManager::giveDataNewUser() //Uzytkownik UzytkownikMenadzer::podajDaneNo
         user.setSurname(surname);
         cout << "Podaj login: ";
         cin >> login;
-        user.setLogin(login); //uzytkownik.ustawLogin(login);
+        user.setLogin(login);
     }
-    while (isLogin(user.getLogin()) == true); //uzytkownik.pobierzLogin()) == true);//usuwamy tez tutaj wektor uzytkownicy
+    while (isLogin(user.getLogin()) == true);
 
     string password;
     cout << "Podaj haslo: ";
     cin >> password;
-    user.setPassword(password); //uzytkownik.ustawHaslo(haslo);
+    user.setPassword(password);
 
     return user;
 }
 
-int UserManager::getIdNewUser() // UzytkownikMenadzer::pobierzIdNowegoUzytkownika()
+int UserManager::getIdNewUser()
 {
     if (users.empty() == true)
         return 1;
@@ -51,7 +49,7 @@ int UserManager::getIdNewUser() // UzytkownikMenadzer::pobierzIdNowegoUzytkownik
         return users.back().getId() + 1;
 }
 
-bool UserManager::isLogin(string login) //UzytkownikMenadzer::czyIstniejeLogin(string login)
+bool UserManager::isLogin(string login)
 {
     for (int i = 0; i < users.size(); i++)
     {
@@ -64,13 +62,13 @@ bool UserManager::isLogin(string login) //UzytkownikMenadzer::czyIstniejeLogin(s
     return false;
 }
 
-void UserManager::userLogin() // UzytkownikMenadzer::logowanieUzytkownika()
+void UserManager::userLogin()
 {
     string login = "", password = "";
     int i = 0;
 
     cout << endl << "Podaj login: ";
-    login = HelpingMethods::loadLine(); //MetodyPomocnicze::wczytajLinie();
+    login = HelpingMethods::loadLine();
 
     while (i < users.size())
     {
@@ -83,7 +81,7 @@ void UserManager::userLogin() // UzytkownikMenadzer::logowanieUzytkownika()
 
                 if (users[i].getPassword() == password)
                 {
-                    idLoggedUser = users[i].getId(); //idZalogowanegoUzytkownika = uzytkownicy[i].pobierzId();
+                    idLoggedUser = users[i].getId();
                     cout << endl << "Zalogowales sie." << endl << endl;
                     Sleep(2000);
                     //system("pause");
@@ -101,7 +99,7 @@ void UserManager::userLogin() // UzytkownikMenadzer::logowanieUzytkownika()
     return;
 }
 
-bool UserManager::isUserLoggedIn() // UzytkownikMenadzer::czyUzytkownikJestZalogowany()
+bool UserManager::isUserLoggedIn()
 {
     if(idLoggedUser > 0)
         return true;
@@ -136,7 +134,7 @@ void UserManager::changeOfPasswordOfLoggedInUser()
                 system("pause");
             }
         }
-        fileWithUsers.saveAllUsersToFile(users);  //plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
+        fileWithUsers.saveAllUsersToFile(users);
     }
     else
     {

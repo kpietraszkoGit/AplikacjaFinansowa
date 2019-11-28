@@ -3,8 +3,8 @@
 void FileWithUsers::addUserToFile(User user)
 {
     CMarkup xml;
-    //bool fileExists = xml.Load( "users.xml" );
-    bool fileExists = xml.Load(getFileName());//(pobierzNazwePliku());
+
+    bool fileExists = xml.Load(getFileName());
 
     if (!fileExists)
     {
@@ -18,7 +18,7 @@ void FileWithUsers::addUserToFile(User user)
     xml.IntoElem(); //wejœcie do elementu User
 
     xml.AddElem("UserId", HelpingMethods::conversionIntToString(user.getId()));
-    xml.AddElem("Login", user.getLogin());//uzytkownik.pobierzLogin());
+    xml.AddElem("Login", user.getLogin());
     xml.AddElem("Password", user.getPassword());
     xml.AddElem("Name", user.getName());
     xml.AddElem("Surname", user.getSurname());
@@ -29,7 +29,7 @@ void FileWithUsers::addUserToFile(User user)
 vector <User> FileWithUsers::loadUsersFromFile()
 {
     CMarkup xml;
-    //bool fileExists = xml.Load( "users.xml" );
+
     bool fileExists = xml.Load(getFileName());
     User user;
     vector <User> users;
@@ -51,30 +51,18 @@ vector <User> FileWithUsers::loadUsersFromFile()
         string surname= xml.GetData();
         xml.OutOfElem();
 
-    /*cout << "ID: " << userID << " :)"<< endl;
-    cout << "Login : " << login << " :)"<< endl;
-    cout << "Haslo : " << password << " :)"<< endl;
-    cout << "Imie : " << name << " :)"<< endl;
-    cout << "Nazwisko : " << surname << " :)"<< endl;*/
-    user.setId(userID); //uzytkownik.ustawId(userID);
-    user.setLogin(login);
-    user.setPassword(password);
-    user.setName(name);
-    user.setSurname(surname);
-    //uzytkownik = pobierzDaneUzytkownika(daneJednegoUzytkownikaOddzielonePionowymiKreskami);
-    users.push_back(user); //uzytkownicy.push_back(uzytkownik);
+        user.setId(userID);
+        user.setLogin(login);
+        user.setPassword(password);
+        user.setName(name);
+        user.setSurname(surname);
+        users.push_back(user);
     }
     return users;
 }
 
 void FileWithUsers::saveSingleUserToFile(User user)
 {
-/*    cout << uzytkownik.pobierzId() << endl;
-    cout << uzytkownik.pobierzLogin() << endl;
-    cout << uzytkownik.pobierzHaslo() << endl;
-    cout << uzytkownik.pobierzImie() << endl;
-    cout << uzytkownik.pobierzNazwisko() << endl;
-system("pause");*/
 
     CMarkup xml;
     bool fileExists = xml.Load(getFileName());
@@ -93,7 +81,7 @@ system("pause");*/
     xml.IntoElem(); //wejœcie do elementu User
 
     xml.AddElem("UserId", HelpingMethods::conversionIntToString(user.getId()));
-    xml.AddElem("Login", user.getLogin());//uzytkownik.pobierzLogin());
+    xml.AddElem("Login", user.getLogin());
     xml.AddElem("Password", user.getPassword());
     xml.AddElem("Name", user.getName());
     xml.AddElem("Surname", user.getSurname());

@@ -21,8 +21,6 @@ class Balance
     {
         inline bool operator() (Income& firstDate, Income& secondDate)
         {
-            //cout << "sortowana pierwsza: " << endl;
-            //system("pause");
             return (firstDate.getDateInt() < secondDate.getDateInt());
         }
     };
@@ -31,8 +29,6 @@ class Balance
     {
         inline bool operator() (Expense& firstDate, Expense& secondDate)
         {
-            //cout << "sortowana pierwsza: " << firstDate.getDateInt() << endl;
-            //system("pause");
             return (firstDate.getDateInt() < secondDate.getDateInt());
         }
     };

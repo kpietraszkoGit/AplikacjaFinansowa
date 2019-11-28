@@ -3,7 +3,7 @@
 bool FileWithExpenses::addExpenseToFile(Expense expense)
 {
     CMarkup xml;
-    //bool fileExists = xml.Load( "users.xml" );
+
     bool fileExists = xml.Load(getFileName());
 
     if (!fileExists)
@@ -18,8 +18,8 @@ bool FileWithExpenses::addExpenseToFile(Expense expense)
     xml.IntoElem(); //wejœcie do elementu User
 
     xml.AddElem("ExpenseId", HelpingMethods::conversionIntToString(expense.getExpenseId()));
-    xml.AddElem("UserId",  HelpingMethods::conversionIntToString(expense.getUserId())); //MetodyPomocnicze::konwerjsaIntNaString(przychod.pobierzIdUzytkownika()));
-    xml.AddElem("DateInt", HelpingMethods::conversionIntToString(expense.getDateInt()));
+    xml.AddElem("UserId",  HelpingMethods::conversionIntToString(expense.getUserId()));
+    //xml.AddElem("DateInt", HelpingMethods::conversionIntToString(expense.getDateInt()));
     xml.AddElem("Date", expense.getDate());
     xml.AddElem("Item", expense.getNameOfExpense());
     xml.AddElem("Amount", expense.getQuantity());
@@ -28,18 +28,13 @@ bool FileWithExpenses::addExpenseToFile(Expense expense)
 
     idLastExpense++;
 
-cout << "ID dodanego ostatniego wydatku: " << idLastExpense << endl;
-system("pause");
-
     return true;
 }
 
 vector <Expense> FileWithExpenses::loadExpensesLoggedUserFromFile(int idLoggedUser)
 {
-    //string daneOstaniegoPrzychoduWPliku = "";
-
     CMarkup xml;
-    //bool fileExists = xml.Load( "users.xml" );
+
     bool fileExists = xml.Load(getFileName());
     Expense expense;
     vector <Expense> expenses;
@@ -53,8 +48,8 @@ vector <Expense> FileWithExpenses::loadExpensesLoggedUserFromFile(int idLoggedUs
         int expenseID = atoi( MCD_2PCSZ(xml.GetData()) );
         xml.FindElem( "UserId" );
         int userID = atoi( MCD_2PCSZ(xml.GetData()) );
-        xml.FindElem( "DateInt" );
-        int dateInt = atoi( MCD_2PCSZ(xml.GetData()) );
+       // xml.FindElem( "DateInt" );
+        //int dateInt = atoi( MCD_2PCSZ(xml.GetData()) );
         xml.FindElem( "Date" );
         string date = xml.GetData();
         xml.FindElem( "Item" );
@@ -63,23 +58,17 @@ vector <Expense> FileWithExpenses::loadExpensesLoggedUserFromFile(int idLoggedUs
         string amount = xml.GetData();
         xml.OutOfElem();
 
-        /*cout << "ID: " << userID << " :)"<< endl;
-        cout << "Login : " << login << " :)"<< endl;
-        cout << "Haslo : " << password << " :)"<< endl;
-        cout << "Imie : " << name << " :)"<< endl;
-        cout << "Nazwisko : " << surname << " :)"<< endl;
-        cout << "ID wydatku: " << expenseID << " :)"<< endl;
-        cout << "ID uzytkownika : " << userID << " :)"<< endl;
-        system("pause");*/
+        string dateWithoutDash = HelpingMethods::removeDashFromDate(date);
+        int dateInt = HelpingMethods::conversionStringToInt(dateWithoutDash);
+
         if (idLoggedUser == userID)
         {
-            expense.setExpenseId(expenseID);//przychod.ustawIdPrzychodu(incomeID);
+            expense.setExpenseId(expenseID);
             expense.setUserId(userID);
             expense.setDateInt(dateInt);
             expense.setDate(date);
             expense.setNameOfExpense(item);
             expense.setQuantity(amount);
-            //uzytkownik = pobierzDaneUzytkownika(daneJednegoUzytkownikaOddzielonePionowymiKreskami);
             expenses.push_back(expense);
         }
         if (date == "" && item == "" && amount == "" && expenseID == 0)

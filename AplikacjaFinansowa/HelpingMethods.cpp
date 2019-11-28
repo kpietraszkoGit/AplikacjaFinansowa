@@ -6,7 +6,7 @@ void HelpingMethods::difference(int sumIncome, int sumExpense)
  cout << "roznica: " << disparity << endl;
 }
 
-string HelpingMethods::conversionIntToString(int number)//konwerjsaIntNaString(int liczba)
+string HelpingMethods::conversionIntToString(int number)
 {
     ostringstream ss;
     ss << number;
@@ -14,14 +14,14 @@ string HelpingMethods::conversionIntToString(int number)//konwerjsaIntNaString(i
     return str;
 }
 
-string HelpingMethods::loadLine() //wczytajLinie()
+string HelpingMethods::loadLine()
 {
     string entrance = "";
     getline(cin, entrance);
     return entrance;
 }
 
-string HelpingMethods::getNumber(string text, int signPosition) //MetodyPomocnicze::pobierzLiczbe(string tekst, int pozycjaZnaku)
+string HelpingMethods::getNumber(string text, int signPosition)
 {
     string number = "";
     while(isdigit(text[signPosition]) == true)
@@ -32,7 +32,7 @@ string HelpingMethods::getNumber(string text, int signPosition) //MetodyPomocnic
     return number;
 }
 
-int HelpingMethods::conversionStringToInt(string number)//konwersjaStringNaInt(string liczba)
+int HelpingMethods::conversionStringToInt(string number)
 {
     int numberInt;
     istringstream iss(number);
@@ -40,7 +40,7 @@ int HelpingMethods::conversionStringToInt(string number)//konwersjaStringNaInt(s
     return numberInt;
 }
 
-string HelpingMethods::replaceFirstLetterForBigAndOtherForSmall(string text)//zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst)
+string HelpingMethods::replaceFirstLetterForBigAndOtherForSmall(string text)
 {
     if (!text.empty())
     {
@@ -50,7 +50,7 @@ string HelpingMethods::replaceFirstLetterForBigAndOtherForSmall(string text)//za
     return text;
 }
 
-char HelpingMethods::loadSign() //wczytajZnak()
+char HelpingMethods::loadSign()
 {
     string entrance = "";
     char sign  = {0};
@@ -72,7 +72,7 @@ char HelpingMethods::loadSign() //wczytajZnak()
     return sign;
 }
 
-int HelpingMethods::loadIntegerNumber() //wczytajLiczbeCalkowita()
+/*int HelpingMethods::loadIntegerNumber()
 {
     string entrance = "";
     int number = 0;
@@ -87,23 +87,20 @@ int HelpingMethods::loadIntegerNumber() //wczytajLiczbeCalkowita()
         cout << "To nie jest liczba. Wpisz ponownie. " << endl;
     }
     return number;
-}
+}*/
 
-string HelpingMethods::conversionCommaToDot(string quantity)//zamianaPrzecinkaNaKropke(string ilosc)
-{//poprawic bo nam zmienia liczbe jak sa wieksze, zwracanie stringa kwota lub ilosc
-    string amount;//kwota;
+string HelpingMethods::conversionCommaToDot(string quantity)
+{
+    string amount;
     if (quantity.find_first_of(',') != string::npos) quantity[quantity.find_first_of(',')] = '.';
     amount = quantity;
-    //kwota += atof (ilosc.c_str());
     return amount;
 }
 
 string HelpingMethods::removeDashFromDate(string signDelete)
 {
-    //cout <<"data przed usunieciem: " << signDelete << endl;
     signDelete = signDelete.erase (4,1);
     signDelete = signDelete.erase (6,1);
-    //cout << "data po usunieciu znaku: " << signDelete << endl;
     return signDelete;
     system("pause");
 }

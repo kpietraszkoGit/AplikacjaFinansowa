@@ -1,6 +1,6 @@
 #include "User.h"
 
-void User::setId(int newId)//(int noweId)//settery aby udostepnic innym klasa to
+void User::setId(int newId)
 {
     if(newId >= 0)
     id = newId;

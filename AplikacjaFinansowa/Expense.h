@@ -1,4 +1,4 @@
-#ifndef EXPENSE_H // zabezpieczenie przed podwójnym includowaniem uzytkownik.h
+#ifndef EXPENSE_H
 #define EXPENSE_H
 
 #include <iostream>
@@ -7,13 +7,13 @@ using namespace std;
 
 class Expense
 {
-//wszystkie one sa prywatne zahermetyzowane
+
     int expenseId;
-    int userId;//idUzytkownika;
-    int dateInt;//dataInt
+    int userId;
+    int dateInt;
     string date;
-    string nameOfExpense;//rodzajPrzychodu;
-    string quantity;//ilosc;
+    string nameOfExpense;
+    string quantity;
 
 
 public:
@@ -26,8 +26,8 @@ public:
         this->nameOfExpense = nameOfExpense;
         this->quantity = quantity;
     }
-    void setExpenseId(int newExpenseId);//settery aby udostepnic innym klasa, tu publiczenie s¹ metody, które zabezpieczamy w pliku .cpp
-    void setUserId(int newUserId);//ustawIdUzytkownika(int noweIdUzytkownika);
+    void setExpenseId(int newExpenseId);
+    void setUserId(int newUserId);
     void setDateInt(int newDateInt);
     void setDate(string newDate);
     void setNameOfExpense(string newNameOfExpense);
@@ -37,8 +37,8 @@ public:
     int getUserId();
     int getDateInt();
     string getDate();
-    string getNameOfExpense();//pobierz typ przychodu
-    string getQuantity();//pobierz ilosc
+    string getNameOfExpense();
+    string getQuantity();
 };
 
 #endif

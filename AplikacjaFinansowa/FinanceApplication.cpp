@@ -1,9 +1,5 @@
 #include "FinanceApplication.h"
 
-/*void AplikacjaFinansowa::rejestracjaUzytkownika()
-{
-    uzytkownikMenadzer.rejestracjaUzytkownika();
-}*/
 void FinanceApplication::userRegistration()
 {
     userManager.userRegistration();
@@ -50,19 +46,11 @@ char FinanceApplication::selectOptionsFromUserMenu()
 
 void FinanceApplication::userLogin()
 {
-    //uzytkownikMenadzer.logowanieUzytkownika();
     userManager.userLogin();
     if (userManager.isUserLoggedIn())
     {
         financeManager = new FinanceManager(NAME_OF_FILE_WITH_INCOMES, NAME_OF_FILE_WITH_EXPENSES, userManager.getIdLoggedUser());
     }
-
-    /*if(uzytkownikMenadzer.czyUzytkownikJestZalogowany())
-    {
-        przychodMenadzer = new PrzychodMenadzer(NAZWA_PLIKU_Z_PRZYCHODAMI, uzytkownikMenadzer.pobierzIdZalogowanegoUzytkownika());
-        wydatekMenadzer = new WydatekMenadzer(NAZWA_PLIKU_Z_WYDATKAMI, uzytkownikMenadzer.pobierzIdZalogowanegoUzytkownika());
-    //wstrzykiwanie zaleznosci miedzy klasami,przesy³anie danych
-    }*/
 }
 
 void FinanceApplication::addIncome()
@@ -76,18 +64,9 @@ void FinanceApplication::addIncome()
         cout << "Aby dodac przychod nalezy najpierw sie zalogowac!" << endl;
         system("pause");
     }
-    /*if (uzytkownikMenadzer.czyUzytkownikJestZalogowany())//kropka do obiektow
-    {
-        przychodMenadzer->dodajPrzychod(); // tutaj pracowalismy na wskazniku dlatego uzywamy strzalki
-    }
-    else
-    {
-        cout << "Aby dodac przychod nalezy najpierw sie zalogowac!" << endl;
-        system("pause");
-    }*/
 }
 
-void FinanceApplication::addExpense()//dodaj wydatek
+void FinanceApplication::addExpense()
 {
     if (userManager.isUserLoggedIn())
     {
@@ -100,7 +79,7 @@ void FinanceApplication::addExpense()//dodaj wydatek
     }
 }
 
-void FinanceApplication::balanceFromThisMonth()//balanceOfMonth()
+void FinanceApplication::balanceFromThisMonth()
 {
     if (userManager.isUserLoggedIn())
     {
@@ -111,19 +90,9 @@ void FinanceApplication::balanceFromThisMonth()//balanceOfMonth()
         cout << "Aby wyswietlic przychody i wydatki nalezy najpierw sie zalogowac!" << endl;
         system("pause");
     }
-/*    if(uzytkownikMenadzer.czyUzytkownikJestZalogowany())//kropka do obiektow
-    {
-        przychodMenadzer->wyswietlPrzychodyZBiezacegoMiesiaca(); // tutaj pracowalismy na wskazniku dlatego uzywamy strzalki
-        wydatekMenadzer->wyswietlWydatkiZBiezacegoMiesiaca();
-    }
-    else
-    {
-        cout << "Aby wyswietlic przychody i wydatki nalezy najpierw sie zalogowac!" << endl;
-        system("pause");
-    }*/
 }
 
-void FinanceApplication::balanceFromLastMonth()//balanceOfPreviousMonth()
+void FinanceApplication::balanceFromLastMonth()
 {
     if (userManager.isUserLoggedIn())
     {
@@ -136,7 +105,7 @@ void FinanceApplication::balanceFromLastMonth()//balanceOfPreviousMonth()
     }
 }
 
-void FinanceApplication::balanceFromOtherPeriodOfTime()//balanceFromSelectedPeriod()
+void FinanceApplication::balanceFromOtherPeriodOfTime()
 {
     if (userManager.isUserLoggedIn())
     {
@@ -149,22 +118,19 @@ void FinanceApplication::balanceFromOtherPeriodOfTime()//balanceFromSelectedPeri
     }
 }
 
-void FinanceApplication::logOutUser()//wylogowanieUzytkownika()
+void FinanceApplication::logOutUser()
 {
     userManager.logOutUser();
-    //uzytkownikMenadzer.wylogowanieUzytkownika();
     delete financeManager;
     financeManager = NULL;
 }
 
-void FinanceApplication::changeOfPasswordOfLoggedInUser()//zmianaHaslaZalogowanegoUzytkownika()
+void FinanceApplication::changeOfPasswordOfLoggedInUser()
 {
-    //uzytkownikMenadzer.zmianaHaslaZalogowanegoUzytkownika();
     userManager.changeOfPasswordOfLoggedInUser();
 }
 
 bool FinanceApplication::isUserLoggedIn()
 {
-    //return uzytkownikMenadzer.czyUzytkownikJestZalogowany();
     return userManager.isUserLoggedIn();
 }

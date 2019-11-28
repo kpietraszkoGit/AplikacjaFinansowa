@@ -7,10 +7,7 @@ string Calendar::getCurrentDate()
 
     SYSTEMTIME st;
     GetSystemTime(&st);
-    //cout << "Biezacy rok to " << st.wYear << endl;
-    //cout << "Biezacy miesiac to " << st.wMonth << endl;
-    //cout << "Biezacy dzien  to " << st.wDay << endl;
-    //cout << "Data dzisiejszego dnia to: " << st.wYear << "-" << st.wMonth << "-" << st.wDay  << endl;
+
     year = st.wYear;
     month = st.wMonth;
     monthString = HelpingMethods::conversionIntToString(month);
@@ -19,7 +16,6 @@ string Calendar::getCurrentDate()
         monthStringNumber = "0"+monthString;
     }
     else monthStringNumber = monthString;
-    //out << "miesiac: " << monthStringNumber << endl;
 
     day = st.wDay;
     dayString = HelpingMethods::conversionIntToString(day);
@@ -28,22 +24,11 @@ string Calendar::getCurrentDate()
         dayStringNumber = "0"+dayString;
     }
     else dayStringNumber = dayString;
-    //cout << "dzien: " << dayStringNumber << endl;
 
     todayDate = HelpingMethods::conversionIntToString(year)+"-"+monthStringNumber+"-"+dayStringNumber;
     cout << todayDate << endl;
 
     return todayDate;
-
-    //bool leapYear = isLeapYear(year);
-    //cout << leapYear << endl;
-    //cout << numberDaysPerMonth(month, leapYear) << endl;
-    //dateComparison(year, month, day);
-}
-
-bool Calendar::isDateGood(string differentDate)
-{
-    //jesli data jest wpisana poprawnie daje true i idzie dalej , jesli jest nie poprawnie powtarzamy tą czynnosć zeby wpisał poprawną date
 }
 
 bool Calendar::isLeapYear(int year)
@@ -74,13 +59,11 @@ string Calendar::trueDateRange()
 {
     SYSTEMTIME st;
     GetSystemTime(&st);
-    //cout << endl << "Data dzisiejszego dnia to: " << st.wYear << "-" << st.wMonth << "-" << st.wDay  << endl;
 
     int giveYear = 0, giveMonthInt = 0, daysInMonth = 0, giveDayInt = 0;
     string giveMonth = "", giveDay = "", writeDate = "";
     bool leapYear;
 
-    ////////////////////////////////////
     cout << "Podaj rok (od 2000 roku): ";
     cin >> giveYear;
     while (giveYear < 2000 || giveYear > st.wYear)
@@ -89,13 +72,12 @@ string Calendar::trueDateRange()
         cin >> giveYear;
     }
     leapYear = isLeapYear(giveYear);
-    //cout << "Rok przestepny: " << leapYear << endl;
 
     cout << "Podaj miesiac: ";
     cin >> giveMonth;
-    //cout <<giveMonth.length() << endl;
+
     giveMonthInt = HelpingMethods::conversionStringToInt(giveMonth);
-    //cout << giveMonthInt << endl;
+
     while ((giveMonthInt > 12 || giveMonthInt < 1) || giveMonth.length() == 1)
     {
         cout << "Podales miesiac poza zakresem lub w zlym formacie, podaj miesiac jeszcze raz: ";
@@ -104,12 +86,12 @@ string Calendar::trueDateRange()
     }
 
     daysInMonth = numberDaysPerMonth(giveMonthInt, leapYear);
-    //cout << "Dni w miesiacu: " <<  daysInMonth << endl;
+
     cout << "Podaj dzien: ";
     cin >> giveDay;
-    //cout << giveDay.length() << endl;
+
     giveDayInt = HelpingMethods::conversionStringToInt(giveDay);
-    //cout << giveDayInt << endl;
+
     while ((giveDayInt > daysInMonth || giveDayInt < 1) || giveDay.length() == 1)
     {
         cout << "Podales dzien poza zakresem lub w zlym formacie, podaj dzien jeszcze raz: ";
@@ -117,7 +99,6 @@ string Calendar::trueDateRange()
         cin >> giveDay;
     }
     writeDate = HelpingMethods::conversionIntToString(giveYear)+"-"+giveMonth+"-"+giveDay;
-    //cout << writeDate << endl;
 
     return writeDate;
 }

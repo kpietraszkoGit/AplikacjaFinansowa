@@ -1,6 +1,6 @@
 #include "Income.h"
 
-void Income::setIncomeId(int newIncomeId)//ustawIdPrzychodu(int noweIdPrzychodu)//settery aby udostepnic innym klasa to
+void Income::setIncomeId(int newIncomeId)
 {
     if (newIncomeId >= 0)
     incomeId = newIncomeId;
@@ -16,7 +16,6 @@ void Income::setDateInt(int newDateInt)
     dateInt = newDateInt;
 }
 void Income::setDate(string newDate)
-//void Przychod::ustawDate(int nowaData)
 {
     date = newDate;
 }
@@ -26,7 +25,6 @@ void Income::setNameOfIncome(string newNameOfIncome)
 }
 void Income::setQuantity(string newQuantity)
 {
-    //if (newQuantity >= 0)
     quantity = newQuantity;
 }
 

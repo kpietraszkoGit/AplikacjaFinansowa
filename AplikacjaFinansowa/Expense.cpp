@@ -1,6 +1,6 @@
 #include "Expense.h"
 
-void Expense::setExpenseId(int newExpenseId)//settery aby udostepnic innym klasa to
+void Expense::setExpenseId(int newExpenseId)
 {
     if (newExpenseId >= 0)
     expenseId = newExpenseId;
@@ -25,7 +25,6 @@ void Expense::setNameOfExpense(string newNameOfExpense)
 }
 void Expense::setQuantity(string newQuantity)
 {
-    //if (nowaIlosc >= 0)
     quantity = newQuantity;
 }
 

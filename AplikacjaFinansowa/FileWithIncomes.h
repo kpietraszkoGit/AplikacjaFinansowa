@@ -15,30 +15,16 @@ using namespace std;
 
 class FileWithIncomes: public FileXml
 {
-    //const string NAZWA_PLIKU_Z_ADRESATAMI;//stala globalna
-    //string NAZWA_PLIKU_Z_ADRESATAMI_TYMCZASOWYMI;
-    int idLastIncome;//idOstatniegoPrzychodu;
-    //int idUsuwanegoAdresata;
-    //fstream plikTekstowy;
+    int idLastIncome;
 
-    //bool czyPlikJestPusty2(fstream &plikTekstowy);
-    //string zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat);
-    //string pobierzLiczbe(string tekst, int pozycjaZnaku);
-   //Adresat pobierzDaneAdresata(string daneAdresataOddzielonePionowymiKreskami);
-    //int pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
-    //int pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
-    //void usunPlik(string nazwaPlikuZRozszerzeniem);
-    //void zmienNazwePliku(string staraNazwa, string nowaNazwa);
-
-public://18:07
-    //PlikZAdresatami(string nazwaPlikuZAdresatami): NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami)
+public:
     FileWithIncomes(string fileName) : FileXml(fileName)
     {
-        idLastIncome = 0;//idOstatniegoPrzychodu = 0;
+        idLastIncome = 0;
     };
-    bool addIncomeToFile(Income income);//dopiszPrzychodDoPliku(Przychod przychod);
-    vector <Income> loadIncomesLoggedUserFromFile(int idLoggedUser);//vector <Przychod> wczytajPrzychodyZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
-    int getIdLastIncome(); //lub//getIdLastIncomeFromFile//pobierzIdOstatniegoPrzychodu();
+    bool addIncomeToFile(Income income);
+    vector <Income> loadIncomesLoggedUserFromFile(int idLoggedUser);
+    int getIdLastIncome();
 };
 
 #endif

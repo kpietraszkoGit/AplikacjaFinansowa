@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <vector>
-//#include "Finance.h"
 #include "Income.h"
 #include "FileWithIncomes.h"
 #include "Expense.h"
@@ -11,6 +10,8 @@
 #include "HelpingMethods.h"
 #include "Calendar.h"
 #include "Balance.h"
+
+#include <windows.h>
 
 using namespace std;
 

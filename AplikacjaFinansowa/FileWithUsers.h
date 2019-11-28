@@ -15,15 +15,15 @@ using namespace std;
 
 class FileWithUsers: public FileXml
 {
-    void saveSingleUserToFile(User user);//zapiszPojedynczegoUzytkownikaDoPliku(Uzytkownik uzytkownik);
+    void saveSingleUserToFile(User user);
 
 public:
 
-    FileWithUsers(string fileName) : FileXml(fileName) {};//PlikZUzytkownikami(string nazwaPliku): PlikXml(nazwaPliku) {};
-    void addUserToFile(User user);//dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik);
-    vector <User> loadUsersFromFile();//wczytajUzytkownikowZPliku();
+    FileWithUsers(string fileName) : FileXml(fileName) {};
+    void addUserToFile(User user);
+    vector <User> loadUsersFromFile();
 
-    void saveAllUsersToFile(vector <User> users);//zapiszWszystkichUzytkownikowDoPliku(vector <User> users);
+    void saveAllUsersToFile(vector <User> users);
 };
 
 #endif
